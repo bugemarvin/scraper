@@ -74,7 +74,7 @@ To run the unit tests for the scraper, use:
 
 ```bash
 python test_scraper.py
-
+```
 ## Example
 
 Here's an example of how to use the scraper programmatically:
