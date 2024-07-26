@@ -19,13 +19,31 @@ Before you begin, ensure you have met the following requirements:
     cd web_scraper
     ```
 
-2. Install the required packages:
+2. Create and activate a virtual environment:
+
+    ```bash
+    python -m venv venv
+    ```
+
+    - On Windows:
+
+        ```bash
+        venv\Scripts\activate
+        ```
+
+    - On macOS and Linux:
+
+        ```bash
+        source venv/bin/activate
+        ```
+
+3. Install the required packages:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-3. Ensure `chromedriver` is available in your PATH. If not, specify its location in `scraper.py` when initializing the WebDriver.
+4. Ensure `chromedriver` is available in your PATH. If not, specify its location in `scraper.py` when initializing the WebDriver.
 
 ## Project Structure
 
