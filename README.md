@@ -7,7 +7,7 @@ the sctipt is a web scraper that uses Selenium to scrape data from web pages. It
 if can only scrape data from a single page by passing the single page as a number, you can modify the script to handle pagination and scrape multiple pages.
 
 It scrapes data from this website by following website only:
-    ~ https://www.color-hex.com/color-palettes
+~ https://www.color-hex.com/color-palettes
 
 Use it to scrape data from other websites by modifying the CSS selectors and data extraction logic in the `scraper.py` file.
 
@@ -25,34 +25,34 @@ Before you begin, ensure you have met the following requirements:
 
 1. Clone the repository:
 
-    ```bash
-    git clone https://github.com/bugemarvin/scraper.git
-    cd scraper
-    ```
+   ```bash
+   git clone https://github.com/bugemarvin/scraper.git
+   cd scraper
+   ```
 
 2. Create and activate a virtual environment:
 
-    ```bash
-    python -m venv venv or python3 -m venv venv
-    ```
+   ```bash
+   python -m venv venv or python3 -m venv venv
+   ```
 
-    - On Windows:
+   - On Windows:
 
-        ```bash
-        venv\Scripts\activate
-        ```
+     ```bash
+     venv\Scripts\activate
+     ```
 
-    - On macOS and Linux:
+   - On macOS and Linux:
 
-        ```bash
-        source venv/bin/activate
-        ```
+     ```bash
+     source venv/bin/activate
+     ```
 
 3. Install the required packages:
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 4. Ensure `chromedriver` is available in your PATH. If not, specify its location in `scraper.py` when initializing the WebDriver.
 
@@ -71,50 +71,49 @@ scraper/
 └── index.html # HTML template for the web interface
 ```
 
-
 ## Usage
 
-1. **Run the  Script or Flask Application**
+1. **Run the Script or Flask Application**
 
-    Run the scraper script directly:
+   Run the scraper script directly:
 
-    ```bash
-    python3 scraper.py
-    ```
+   ```bash
+   python3 scraper.py
+   ```
 
-    Start the Flask application by running:
+   Start the Flask application by running:
 
-    ```bash
-    flask run
-    ```
+   ```bash
+   flask run
+   ```
 
-    If you're using Windows, set the `FLASK_APP` environment variable first:
+   If you're using Windows, set the `FLASK_APP` environment variable first:
 
-    ```bash
-    set FLASK_APP=app.py
-    flask run
-    ```
+   ```bash
+   set FLASK_APP=app.py
+   flask run
+   ```
 
-    Start as a standalone application:
+   Start as a standalone application:
 
-    ```bash
-    python3 app.py
-    ```
+   ```bash
+   python3 app.py
+   ```
 
 2. **Access the Web Interface**
 
-    Open your web browser and navigate to `http://127.0.0.1:5000`. You should see a web form where you can input the scraping parameters.
+   Open your web browser and navigate to `http://127.0.0.1:5000`. You should see a web form where you can input the scraping parameters.
 
 3. **Input Scraping Parameters**
 
-    - **URL**: The URL of the website you want to scrape.
-    - **Pagination Selector**: The CSS selector for the pagination button/link.
-    - **Data Selector**: The CSS selector for the data you want to scrape.
-    - **File Format**: Choose between CSV or JSON for the output file format.
+   - **URL**: The URL of the website you want to scrape.
+   - **Pagination Selector**: The CSS selector for the pagination button/link.
+   - **Data Selector**: The CSS selector for the data you want to scrape.
+   - **File Format**: Choose between CSV or JSON for the output file format.
 
 4. **Start Scraping**
 
-    Click on the "Scrape" button. The scraper will process the pages, and the data will be available for download once scraping is complete.
+   Click on the "Scrape" button. The scraper will process the pages, and the data will be available for download once scraping is complete.
 
 ## Running Tests
 
@@ -123,26 +122,28 @@ To run the unit tests for the scraper, use:
 ```bash
 python test_scraper.py
 ```
+
 ## Example
 
 Here's an example of how to use the scraper programmatically:
 
 ```python
-from scraper import WebScraper
+import scraper
 
-url = "https://www.color-hex.com/color-palettes"
-num_pages = 1764  # Set the number of pages to scrape
-driver = scraper.init_driver()
+url = "https://www.color-hex.com/color-palettes" # Specify the URL to scrape data from (Please note that this URL is subject to change as well as the structure of the website to be scraped from in the future in scraper.py)
+num_pages = 1764  # Set the number of pages to scrape per your requirements (1764 pages in this case)
+driver = scraper.init_driver() # Initialize the driver
 try:
     print("Collecting palette data from the specified URL...")
-    palette_data = scraper.collect_palette_data(driver, url, num_pages)
+    palette_data = scraper.collect_palette_data(driver, url, num_pages) # Collect palette data
     print(f"Total palettes extracted: {len(palette_data)}")
-    save_data(palette_data, 'data/palette_data.csv') or save_data(palette_data, 'data/palette_data.json')
+    save_data(palette_data, 'data/palette_data.csv') # Save the data to a CSV file
+    or
+    save_data(palette_data, 'data/palette_data.json') # Save the data to a JSON file
 finally:
+    # Quit the driver after processing
     driver.quit()
 ```
-
-This code snippet creates a `WebScraper` object with the specified URL, pagination selector, and data selector. It then scrapes the data, saves it to a CSV file, and downloads the file.
 
 ```json
 [
@@ -202,4 +203,3 @@ Contributing
 If you have any questions, feel free to reach out to me at bugemarvin@outlook.com.
 
 Save this as `README.md` in your project directory. This file provides comprehensive instructions on how to set up, use, and test the web scraper and Flask application.
-
