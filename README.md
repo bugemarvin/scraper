@@ -1,6 +1,6 @@
 # Scraper
 
-This project is a web scraper built with Selenium and integrated with a Flask application. It allows users to scrape data from web pages, handle pagination, and download the scraped data in CSV or JSON format through a web interface.
+This project is a web scraper built with Selenium and integrated with a Flask application. It allows users to scrape data from web pages, handle pagination, and download the scraped data in CSV or JSON format through a web interface as well as a standalone application that can be run on the terminal.
 
 The sctipt is a web scraper that uses Selenium to scrape data from web pages. It can handle pagination and save the scraped data in CSV or JSON format. The scraper is integrated with a Flask application, allowing users to input the scraping parameters through a web interface.
 
