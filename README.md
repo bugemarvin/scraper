@@ -145,6 +145,8 @@ finally:
     driver.quit()
 ```
 
+### Output
+
 ```json
 [
   {
