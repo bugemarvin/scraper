@@ -7,7 +7,7 @@ the sctipt is a web scraper that uses Selenium to scrape data from web pages. It
 if can only scrape data from a single page by passing the single page as a number, you can modify the script to handle pagination and scrape multiple pages.
 
 It scrapes data from this website by following website only:
-~ https://www.color-hex.com/color-palettes
+> https://www.color-hex.com/color-palettes
 
 Use it to scrape data from other websites by modifying the CSS selectors and data extraction logic in the `scraper.py` file.
 
