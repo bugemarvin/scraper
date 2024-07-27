@@ -15,6 +15,11 @@ def init_driver():
     service = Service(ChromeDriverManager().install())
     return webdriver.Chrome(service=service, options=chrome_options)
 
+# Convert RGB to HEX
+def rgb_to_hex(rgb):
+    rgb = [int(x) for x in rgb[4:-1].split(",")]
+    return '#%02x%02x%02x' % tuple(rgb)
+
 # Collect palette data from multiple pages
 def collect_palette_data(driver, base_url, num_pages):
     data = []
@@ -27,13 +32,27 @@ def collect_palette_data(driver, base_url, num_pages):
                 print("Extracting palette data...")
                 try:
                     anchor = palette.find_element(By.TAG_NAME, "a")
-                    palette_name = anchor.get_attribute("title")
+                    id = anchor.get_attribute("href").split("/")[-1]
+                    palette_name = anchor.get_attribute("title").split(" ")
+                    palette_name = " ".join(palette_name[2:])
+                    
                     color_elements = palette.find_elements(By.CLASS_NAME, "palettecolordiv")
-                    colors = [color_elem.get_attribute("style").split("background-color: ")[1].split(";")[0] for color_elem in color_elements]
-                    print(f"Palette Name: {palette_name}" + "\n" + f"Colors: {colors}")
+                    colors_rgb = []
+                    colors_hex = []
+                    
+                    for color_elem in color_elements:
+                        style = color_elem.get_attribute("style")
+                        if style and "background-color:" in style:
+                            rgb = style.split("background-color: ")[1].split(";")[0]
+                            colors_rgb.append(rgb)
+                            colors_hex.append(rgb_to_hex(rgb))
+                    
+                    print(f"Palette Name: {palette_name}" + "\n" + f"Colors: {colors_rgb}" + "\n" + f"HEX: {colors_hex}")
                     data.append({
+                        "ID": id,
                         "Name": palette_name,
-                        "Colors": colors
+                        "HEX": colors_hex,
+                        "RGB": colors_rgb
                     })
                 except NoSuchElementException as e:
                     print(f"Palette elements not found within the container. Error: {e}")
@@ -51,14 +70,15 @@ def save_data(data, filename):
     if not os.path.exists('data'):
         os.makedirs('data')
     df = pd.DataFrame(data)
-    if '.json' in filename:
+    if filename.endswith('.json'):
         df.to_json(filename, orient='records')
-    df.to_csv(filename, index=False)
+    else:
+        df.to_csv(filename, index=False)
 
 # Main function
 def main():
     url = "https://www.color-hex.com/color-palettes"
-    num_pages = 10  # Set the number of pages to scrape
+    num_pages = 1  # Set the number of pages to scrape
     driver = init_driver()
     try:
         print("Collecting palette data from the specified URL...")
