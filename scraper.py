@@ -29,7 +29,7 @@ def collect_palette_data(driver, base_url, num_pages):
             palette_elements = driver.find_elements(By.CLASS_NAME, "palettecontainerlist")
             print(f"Found {len(palette_elements)} palettes on page {page}.")
             for palette in palette_elements:
-                print("Extracting palette data...")
+                print(f"Extracting palette data {palette_elements.index(palette) + 1}...")
                 try:
                     anchor = palette.find_element(By.TAG_NAME, "a")
                     id = anchor.get_attribute("href").split("/")[-1]
@@ -78,7 +78,7 @@ def save_data(data, filename):
 # Main function
 def main():
     url = "https://www.color-hex.com/color-palettes"
-    num_pages = 1  # Set the number of pages to scrape
+    num_pages = 1764  # Set the number of pages to scrape
     driver = init_driver()
     try:
         print("Collecting palette data from the specified URL...")

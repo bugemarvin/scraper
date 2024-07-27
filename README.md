@@ -130,9 +130,60 @@ Here's an example of how to use the scraper programmatically:
 ```python
 from scraper import WebScraper
 
-scraper = WebScraper('https://example.com', '.pagination-next', '.item')
-data = scraper.scrape()
-scraper.save_data(data, 'csv', 'data.csv')
+url = "https://www.color-hex.com/color-palettes"
+num_pages = 1764  # Set the number of pages to scrape
+driver = scraper.init_driver()
+try:
+    print("Collecting palette data from the specified URL...")
+    palette_data = scraper.collect_palette_data(driver, url, num_pages)
+    print(f"Total palettes extracted: {len(palette_data)}")
+    save_data(palette_data, 'data/palette_data.csv') or save_data(palette_data, 'data/palette_data.json')
+finally:
+    driver.quit()
+```
+
+This code snippet creates a `WebScraper` object with the specified URL, pagination selector, and data selector. It then scrapes the data, saves it to a CSV file, and downloads the file.
+
+```json
+[
+  {
+    "ID": "1048899",
+    "Name": "seafoam essence",
+    "HEX": [
+      "#ffffff",
+      "#fffcfa",
+      "#e1f4f6",
+      "#b6e3ea",
+      "#7bcdd9"
+    ],
+    "RGB": [
+      "rgb(255, 255, 255)",
+      "rgb(255, 252, 250)",
+      "rgb(225, 244, 246)",
+      "rgb(182, 227, 234)",
+      "rgb(123, 205, 217)"
+    ]
+  },
+  {
+    "ID": "1048898",
+    "Name": "Dark Blue-Magenta",
+    "HEX": [
+      "#0c070d",
+      "#221b41",
+      "#322971",
+      "#747bb4",
+      "#a2abca"
+    ],
+    "RGB": [
+      "rgb(12, 7, 13)",
+      "rgb(34, 27, 65)",
+      "rgb(50, 41, 113)",
+      "rgb(116, 123, 180)",
+      "rgb(162, 171, 202)"
+    ]
+  },
+    ...
+]
 ```
 
 # License
