@@ -26,7 +26,7 @@ Before you begin, ensure you have met the following requirements:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/web_scraper.git
+    git clone https://github.com/bugemarvin/scraper.git
     cd scraper
     ```
 
