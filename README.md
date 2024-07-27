@@ -33,7 +33,7 @@ Before you begin, ensure you have met the following requirements:
 2. Create and activate a virtual environment:
 
     ```bash
-    python -m venv venv
+    python -m venv venv or python3 -m venv venv
     ```
 
     - On Windows:
