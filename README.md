@@ -108,7 +108,7 @@ scraper/
 
    - **URL**: The URL of the website you want to scrape.
    - **Pagination Selector**: The CSS selector for the pagination button/link.
-   - **Data Selector**: The CSS selector for the data you want to scrape. (Please note that this URL is subject to change as well as the structure of the website to be scraped from in the future in scraper.py) `#Update the CSS selector in the scraper.py file`
+   - **Data Selector**: The CSS selector for the data you want to scrape. (Please note that this URL is subject to change as well as the structure of the website to be scraped from in the future in scraper.py) `Update the CSS selector in the scraper.py file`
    - **File Format**: Choose between CSV or JSON for the output file format.
 
 4. **Start Scraping**
