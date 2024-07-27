@@ -27,7 +27,7 @@ Before you begin, ensure you have met the following requirements:
 
     ```bash
     git clone https://github.com/yourusername/web_scraper.git
-    cd web_scraper
+    cd scraper
     ```
 
 2. Create and activate a virtual environment:
