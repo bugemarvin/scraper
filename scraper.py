@@ -26,24 +26,24 @@ def collect_palette_data(driver, base_url, num_pages):
     for page in range(1, num_pages + 1):
         try:
             driver.get(f"{base_url}/?page={page}") # Load the page
-            palette_elements = driver.find_elements(By.CLASS_NAME, "palettecontainerlist") # Find palette elements on the page by class name
+            palette_elements = driver.find_elements(By.CLASS_NAME, "palettecontainerlist") # Find palette elements on the page by class name you can adjust this according to the structure of the website
             print(f"Found {len(palette_elements)} palettes on page {page}.")
             for palette in palette_elements:
                 print(f"Extracting palette data {palette_elements.index(palette) + 1}...")
                 try:
-                    anchor = palette.find_element(By.TAG_NAME, "a") # Find the anchor tag within the palette element to extract the ID and name
-                    id = anchor.get_attribute("href").split("/")[-1] # Extract the ID from the href attribute
-                    palette_name = anchor.get_attribute("title").split(" ") # Extract the palette name from the title attribute
-                    palette_name = " ".join(palette_name[2:]) # Join the palette name
+                    anchor = palette.find_element(By.TAG_NAME, "a") # Find the anchor tag within the palette element to extract the ID and name you can adjust this according to the structure of the website
+                    id = anchor.get_attribute("href").split("/")[-1] # Extract the ID from the href attribute you can adjust this according to the structure of the website
+                    palette_name = anchor.get_attribute("title").split(" ") # Extract the palette name from the title attribute you can adjust this according to the structure of the website
+                    palette_name = " ".join(palette_name[2:]) # Join the palette name excluding the first two words (e.g., "Color Palette: ") you can adjust this according to the structure of the website
                     
-                    color_elements = palette.find_elements(By.CLASS_NAME, "palettecolordiv") # Find color elements within the palette element
+                    color_elements = palette.find_elements(By.CLASS_NAME, "palettecolordiv") # Find color elements within the palette element you can adjust this according to the structure of the website
                     colors_rgb = [] # Initialize list to store RGB colors
                     colors_hex = [] # Initialize list to store HEX colors
                     
                     for color_elem in color_elements:
-                        style = color_elem.get_attribute("style") # Get the style attribute of the color element
+                        style = color_elem.get_attribute("style") # Get the style attribute of the color element you can adjust this according to the structure of the website
                         if style and "background-color:" in style:
-                            rgb = style.split("background-color: ")[1].split(";")[0] # Extract the RGB value from the style attribute
+                            rgb = style.split("background-color: ")[1].split(";")[0] # Extract the RGB value from the style attribute you can adjust this according to the structure of the website
                             colors_rgb.append(rgb) # Append the RGB value to the list
                             colors_hex.append(rgb_to_hex(rgb)) # Convert RGB to HEX and append to the list
                     
